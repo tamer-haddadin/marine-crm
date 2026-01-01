@@ -102,7 +102,7 @@ export default function AuthPage() {
               <img
                 src="/platform-logo.png"
                 alt="Insurance Platform"
-                className="h-24 w-auto object-contain drop-shadow-2xl"
+                className="h-40 w-auto object-contain drop-shadow-2xl"
               />
             </motion.div>
 
