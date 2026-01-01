@@ -1,0 +1,63 @@
+// In routes.ts
+app.get("/api/quotations/analyze", requireAuth, async (req, res) => {
+    const { startDate, endDate } = req.query;
+
+    try {
+        // Ensure dates are handled as UTC to avoid timezone issues
+        const parsedStartDate = startDate ? new Date(startDate as string + 'T00:00:00.000Z') : undefined;
+        const parsedEndDate = endDate ? new Date(endDate as string + 'T23:59:59.999Z') : undefined;
+
+        console.log('Analysis request with parsed dates:', {
+            originalStart: startDate,
+            originalEnd: endDate,
+            parsedStart: parsedStartDate?.toISOString(),
+            parsedEnd: parsedEndDate?.toISOString()
+        });
+
+        // Rest of your code...
+    } catch (error) {
+        // Error handling...
+    }
+});
+
+// In storage.ts
+async listQuotationsInDateRange(
+    userId: number,
+    startDate?: Date,
+    endDate?: Date,
+    status?: string
+): Promise<Quotation[]> {
+    try {
+        let query = db.select().from(quotations);
+
+        if (startDate && !isNaN(startDate.getTime())) {
+            query = query.where(sql`quotations.quotation_date >= ${startDate.toISOString()}`);
+        }
+        
+        if (endDate && !isNaN(endDate.getTime())) {
+            query = query.where(sql`quotations.quotation_date <= ${endDate.toISOString()}`);
+        }
+
+        if (status && typeof status === 'string') {
+            query = query.where(eq(quotations.status, status));
+        }
+
+        const results = await query.execute();
+        
+        // Add debugging logs
+        console.log('Query results:', {
+            totalResults: results.length,
+            firstDate: results[0]?.quotation_date,
+            lastDate: results[results.length - 1]?.quotation_date,
+            dateRange: {
+                start: startDate?.toISOString(),
+                end: endDate?.toISOString()
+            }
+        });
+
+        return results;
+    } catch (error) {
+        console.error('Error in listQuotationsInDateRange:', error);
+        throw error;
+    }
+}

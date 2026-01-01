@@ -1,0 +1,35 @@
+Warning: &#x60;value&#x60; prop on &#x60;textarea&#x60; should not be null. Consider using an empty string to clear the component or &#x60;undefined&#x60; for uncontrolled components.
+    at textarea
+    at _c (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/src/components/ui/textarea.tsx:20:11)
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DKHUMOWT.js?v=72fe37de:52:11
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DKHUMOWT.js?v=72fe37de:33:11
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/src/components/ui/form.tsx:127:9
+    at div
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/src/components/ui/form.tsx:71:6
+    at Controller (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-YABUFNLM.js?v=72fe37de:313:35)
+    at FormField (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/src/components/ui/form.tsx:32:6)
+    at form
+    at FormProvider (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-YABUFNLM.js?v=72fe37de:102:11)
+    at OrderForm (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/src/components/orders/order-form.tsx:44:37)
+    at div
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-CPFL7ZFD.js?v=72fe37de:41:13
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-KJ6JGVAN.js?v=72fe37de:59:7
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DKHUMOWT.js?v=72fe37de:52:11
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DKHUMOWT.js?v=72fe37de:33:11
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-CPFL7ZFD.js?v=72fe37de:41:13
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-NEV6IQIL.js?v=72fe37de:57:5
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WBCLXRS5.js?v=72fe37de:232:13
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WBCLXRS5.js?v=72fe37de:155:58
+    at Presence (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-ZZTLKGR7.js?v=72fe37de:24:11)
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WBCLXRS5.js?v=72fe37de:146:64
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DKHUMOWT.js?v=72fe37de:52:11
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DKHUMOWT.js?v=72fe37de:33:11
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-CPFL7ZFD.js?v=72fe37de:41:13
+    at https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-KJ6JGVAN.js?v=72fe37de:258:22
+    at Presence (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-ZZTLKGR7.js?v=72fe37de:24:11)
+    at Provider (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-YRL5WAL7.js?v=72fe37de:38:15)
+    at DialogPortal (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-WBCLXRS5.js?v=72fe37de:109:11)
+    at _c3 (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/src/components/ui/dialog.tsx:49:12)
+    at Provider (https://9e5527b2-540c-4d10-82fb-97ffd381f6a5-00-3rzhce458ncts.kirk.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-YRL5WAL7.js?v=72fe37de:38:15)
+    at Dialog…
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.

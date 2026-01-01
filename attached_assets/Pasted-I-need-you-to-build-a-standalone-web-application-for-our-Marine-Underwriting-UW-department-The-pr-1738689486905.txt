@@ -1,0 +1,49 @@
+I need you to build a standalone web application for our Marine Underwriting (UW) department. The primary purpose of this app is to record firm orders, track their status, and manage follow-ups with automated reminders. Additionally, the app should integrate a large language model (LLM) (e.g., OpenAI's GPT-4) to generate follow-up email drafts and status summaries.
+
+Key Features & Requirements:
+
+Firm Order Entry & Tracking:
+
+A form for entering new firm orders with details such as broker name, order date, and any other relevant information.
+Each order should have a status that can be updated (e.g., "Firm Order Received," "COI Issued," "KYC Pending," "KYC Completed," "Policy Issued").
+Record a log of status changes with timestamps and optional notes.
+Automated Reminders:
+
+Implement a background scheduler (e.g., using cron or an equivalent scheduling library) to check for orders that have been in a specific status (for example, "COI Issued") for longer than a configurable threshold (e.g., 48 hours).
+When an order exceeds the allowed time in a status, trigger a reminder notification. The reminder should include an LLM-generated draft message (see LLM Integration below).
+LLM Integration:
+
+Integrate with an LLM API (e.g., OpenAI’s GPT-4) to generate:
+A draft follow-up email for orders that are pending (for example, for orders stuck in "COI Issued" status without KYC updates).
+Summary reports of order statuses if needed.
+The LLM-generated content should be accessible from the order detail view so that users can review and edit it before sending.
+User Interface (Frontend):
+
+Develop a responsive dashboard displaying all orders with filtering and search capabilities.
+Provide forms for creating new orders and updating existing orders.
+Display notifications or alerts for orders that require follow-up.
+Use a modern JavaScript framework (e.g., React, Angular, or Vue.js).
+Backend & API:
+
+Build an API to support CRUD operations on orders and status logs.
+Implement endpoints such as:
+POST /orders – Create a new firm order.
+GET /orders – List and filter orders.
+PUT /orders/:id – Update an order (including status updates).
+GET /orders/:id/logs – Retrieve the status log for an order.
+Develop a scheduler service that runs periodically to check orders and trigger reminders.
+Database:
+
+Use a relational (e.g., PostgreSQL, MySQL) or NoSQL database (e.g., MongoDB) to store orders and status logs.
+Design a schema with tables/collections for orders (fields: id, broker_name, order_date, status, LLM_suggestion, last_updated, etc.) and status logs (fields: id, order_id, status, timestamp, notes).
+Deployment & Security:
+
+Ensure API keys (especially for the LLM) are stored securely (e.g., in environment variables).
+Provide basic authentication for the app.
+The app should be deployable on an internal server or cloud platform.
+Additional Details:
+
+Please include error handling and logging.
+Write clean, modular code and include comments where necessary.
+Provide instructions on how to set up and run the app locally.
+If possible, include unit tests for critical functionalities (e.g., the scheduler and API endpoints).

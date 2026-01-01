@@ -1,0 +1,112 @@
+[
+  {
+    "﻿Broker Name": "Noble Insurance Broker",
+    "Insured Name": "QASWA LOGISTICS",
+    "Marine Product Type": "Haulier Liability/FFL",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/02/2025",
+    "Status": "Decline",
+    "Decline Reason": "No risk appetite",
+    "Notes": "",
+    "Last Updated": "06/02/2025"
+  },
+  {
+    "﻿Broker Name": "YALLA COMPARE",
+    "Insured Name": "Alexander",
+    "Marine Product Type": "Pleasure Boats",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/02/2025",
+    "Status": "Decline",
+    "Decline Reason": "due to age boat",
+    "Notes": "",
+    "Last Updated": "06/02/2025"
+  },
+  {
+    "﻿Broker Name": "Al Raha Broker",
+    "Insured Name": "MUBARAK RASHID MUBARAK MOHAMED ALMANSOORI",
+    "Marine Product Type": "Pleasure Boats",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/02/2025",
+    "Status": "Decline",
+    "Decline Reason": "Houseboat",
+    "Notes": "",
+    "Last Updated": "06/02/2025"
+  },
+  {
+    "﻿Broker Name": "BMS",
+    "Insured Name": "CANTIERI NAVALI",
+    "Marine Product Type": "Pleasure Boats",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/02/2025",
+    "Status": "Decline",
+    "Decline Reason": "Due to age of the boat",
+    "Notes": "",
+    "Last Updated": "06/02/2025"
+  },
+  {
+    "﻿Broker Name": "Delta Insurance Broker",
+    "Insured Name": "MALALLA AHMAD HASSAN AHMAD AL ALI",
+    "Marine Product Type": "Pleasure Boats",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/02/2025",
+    "Status": "Decline",
+    "Decline Reason": "TPL on standalone.",
+    "Notes": "",
+    "Last Updated": "06/02/2025"
+  },
+  {
+    "﻿Broker Name": "Al Nahda Broker",
+    "Insured Name": "ASIA CRUISING BOAT RENTAL",
+    "Marine Product Type": "Pleasure Boats",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/03/2025",
+    "Status": "Decline",
+    "Decline Reason": "TPL on standalone basis.",
+    "Notes": "",
+    "Last Updated": "06/03/2025"
+  },
+  {
+    "﻿Broker Name": "LOCKTON INSURANCE BROKERS L.L.C - DUBAI BRANCH",
+    "Insured Name": "MAXSU TRADING FZC",
+    "Marine Product Type": "Marine Open Cover",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/03/2025",
+    "Status": "Decline",
+    "Decline Reason": "Storage risks under MOP which we cannot do.",
+    "Notes": "",
+    "Last Updated": "06/03/2025"
+  },
+  {
+    "﻿Broker Name": "Omega Insurance Broker",
+    "Insured Name": "Big Boats Repair & Maintenance ship -LLC",
+    "Marine Product Type": "Pleasure Boats",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/03/2025",
+    "Status": "Decline",
+    "Decline Reason": "",
+    "Notes": "YOB 2006 commercial purposes",
+    "Last Updated": "06/03/2025"
+  },
+  {
+    "﻿Broker Name": "Omega Insurance Broker",
+    "Insured Name": "PSL ARABIA SHIPPING AND LOGISTICS L.L.C",
+    "Marine Product Type": "Haulier Liability/FFL",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/03/2025",
+    "Status": "Decline",
+    "Decline Reason": "100% sub-contractors",
+    "Notes": "",
+    "Last Updated": "06/03/2025"
+  },
+  {
+    "﻿Broker Name": "Omega Insurance Broker",
+    "Insured Name": "MAR MARINE AND BUILDING CONTRACTING L.L.C",
+    "Marine Product Type": "Marine Cargo Single Shipment",
+    "Estimated Premium": "0",
+    "Quotation Date": "06/04/2025",
+    "Status": "Decline",
+    "Decline Reason": "Shipment to Lebanon via Syria",
+    "Notes": "",
+    "Last Updated": "06/04/2025"
+  }
+]

@@ -1,0 +1,57 @@
+Marine Insurance Quotation Analysis Report
+Period: 11 Feb 2025 - 13 Feb 2025
+1. Quotation Counts and Conversion Rate:
+
+- Total Open Quotations: 11
+
+- Total Confirmed Quotations: 6
+
+- Total Declined Quotations: 5
+
+- Total Quotations in Period: 22
+
+- Active Quotations (excluding declined): 17
+
+- Conversion Rate: 35.29%
+
+2. Average premium values by status with currency breakdowns:
+
+- For confirmed quotations, the total premium amount is 73,805 AED plus 0 USD. This gives an average premium of approximately 12,300.83 AED per confirmed quotation.
+
+- For open quotations, the total premium is 1,837,350 AED. This gives an average premium of approximately 167,941.36 AED per open quotation.
+
+- For declined quotations, the total premium is 0 AED because all declined quotations have 0 premium. The focus here is on identifying non-financial reasons behind premium values like exclusions and risks.
+
+3. Clear trends in marine product types with percentages:
+
+- Marine Cargo Single Shipment makes up 27.27% of total quotations.
+
+- Pleasure Boats account for 31.82% of total quotations.
+
+- Goods in Transit covers 18.18% of total quotations.
+
+- Marine Open Cover represents 13.64% of total quotations.
+
+- Haulier Liability/FFL contributes 9.09% to the overall quotations.
+
+4. Key brokers performance analysis:
+
+- 'Gargash Sharjah' has a significant presence but zero confirmed policies, suggesting potential areas for investigation and improvement.
+
+- 'Faisel' achieved a relatively higher conversion rate with confirmed quotations against the total quotations made, highlighting effective execution.
+
+- 'AL HIMAYAH INSURANCE BROKERAGE (LLC)' converted both its quotes into confirmed statuses, reflecting a high efficiency rate.
+
+- 'Omega Insurance Broker' has a notable success rate with the confirmed quotations it managed.
+
+5. Actionable recommendations for improving conversion rates:
+
+- Enhance risk profiling at the initial quotation phase to reduce declined quotes. Focus on understanding and aligning product terms with client needs, particularly for high-risk accounts in Pleasure Boats and Marine Cargo Single Shipment.
+
+- Increase the follow-up on open quotations to resolve outstanding issues or objections that may be hindering confirmation. Use targeted communications aimed at clarifying and negotiating terms.
+
+- Expanding partnerships with brokers like 'AL HIMAYAH INSURANCE BROKERAGE (LLC)' who demonstrate a higher success rate to increase confirmed quotations.
+
+- Reassess the pricing strategies employed for different product types to remain competitive while ensuring coverage adequacy, especially for products with zero premium declined cases such as Haulier Liability/FFL.
+
+Generated on 14 Feb 2025 16:29

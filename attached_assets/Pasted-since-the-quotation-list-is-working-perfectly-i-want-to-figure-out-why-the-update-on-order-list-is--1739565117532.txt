@@ -1,0 +1,76 @@
+since the quotation list is working perfectly, i want to figure out why the update on order list is not working like it should be as quotation form 
+
+The key difference lies in how the cache invalidation and data transformation are handled between the Quotation and Order forms. Here's the solution:
+
+1. Missing Cache Invalidation in Order Updates
+In the Quotation form's updateQuotationMutation, after a successful update:
+
+// QuotationForm.tsx (works)
+onSuccess: () => {
+  queryClient.invalidateQueries({ queryKey: ["/api/quotations"] });
+  queryClient.invalidateQueries({ queryKey: ["/api/quotations", initialData.id] });
+  queryClient.invalidateQueries({ queryKey: ["/api/quotations/analyze"] });
+}
+
+But in the Order form's updateOrderMutation, only the main query is invalidated:
+
+// OrderForm.tsx (problem)
+onSuccess: (response) => {
+  onSuccess({ order: response, ... });
+}
+
+2. Data Type Mismatch in Optimistic Updates
+The Order form's premium field has a type mismatch between:
+
+Server response (number)
+
+Client display (string, via parseFloat(order.premium).toFixed(2))
+
+Fix Both Issues Like This:
+1. Update OrderForm's mutation (match Quotation logic):
+
+// order-form.tsx
+const updateOrderMutation = useMutation({
+  // ... existing config
+  onSuccess: (response) => {
+    // Add comprehensive invalidation
+    queryClient.invalidateQueries({ queryKey: ["/api/orders"] });
+    if (initialData?.id) {
+      queryClient.invalidateQueries({ queryKey: ["/api/orders", initialData.id] });
+    }
+    queryClient.invalidateQueries({ queryKey: ["/api/orders/analyze"] }); // If exists
+
+    toast({ /* ... */ });
+    onSuccess({ order: response, hasMovedToClosed: false });
+  },
+});
+
+2. Fix Premium Type in Optimistic Updates:
+
+// edit-order-dialog.tsx
+const handleSuccess = (response: { order: Order; hasMovedToClosed: boolean }) => {
+  // Convert premium to string during optimistic update
+  const updatedOrder = {
+    ...response.order,
+    premium: String(response.order.premium) // Explicit conversion
+  };
+
+  queryClient.setQueryData(["/api/orders"], (oldData: Order[] | undefined) => {
+    return oldData?.map(order => 
+      order.id === updatedOrder.id ? updatedOrder : order
+    ) || [];
+  });
+
+  // ... rest of the code
+};
+
+3. Remove Redundant Select in OrderList:
+
+// order-list.tsx
+// Remove this select block:
+select: (data) => {
+  return data.map(order => ({
+    ...order,
+    premium: String(order.premium)
+  }));
+}

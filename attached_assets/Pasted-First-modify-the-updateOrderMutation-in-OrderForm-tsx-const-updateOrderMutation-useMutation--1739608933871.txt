@@ -1,0 +1,121 @@
+First, modify the updateOrderMutation in OrderForm.tsx:
+
+const updateOrderMutation = useMutation({
+
+    mutationFn: async (data: any) => {
+
+      const formData = {
+
+        ...data,
+
+        orderDate: new Date(data.orderDate).toISOString(),
+
+        premium: String(data.premium),
+
+        notes: data.notes || null,
+
+      };
+
+      const res = await apiRequest("PUT", /api/orders/${initialData?.id}, formData);
+
+      if (!res.ok) {
+
+        const errorData = await res.json();
+
+        throw new Error(errorData.message || "Failed to update order");
+
+      }
+
+      const responseData = await res.json();
+
+      // Ensure consistent response format
+
+      return { order: responseData, hasMovedToClosed: false };
+
+    },
+
+    onSuccess: (response) => {
+
+      queryClient.setQueryData(["/api/orders"], (oldData: Order[] | undefined) => {
+
+        if (!oldData) return [response.order];
+
+        return oldData.map(order => 
+
+          order.id === response.order.id ? response.order : order
+
+        );
+
+      });
+
+      
+
+      toast({
+
+        title: "Success",
+
+        description: "Firm order updated successfully",
+
+      });
+
+      onSuccess(response);
+
+    },
+
+    // ...
+
+});
+
+Update the OrderList.tsx query configuration:
+
+const { data: orders, isLoading } = useQuery<Order[]>({
+    queryKey: ["/api/orders"],
+    staleTime: 0,
+    cacheTime: 0, // Add this
+    refetchOnMount: true, // Add this
+    refetchOnWindowFocus: true,
+    refetchInterval: 0,
+    retry: 3,
+    select: (data) => {
+      return data.map(order => ({
+        ...order,
+        premium: typeof order.premium === 'number' ? 
+          String(order.premium) : order.premium
+      }));
+    }
+});
+
+Modify the handleEditSuccess function in OrderList.tsx:
+
+const handleEditSuccess = async (response: { order: Order; hasMovedToClosed: boolean }) => {
+    try {
+        // Immediately update the cache with the new data
+        queryClient.setQueryData(["/api/orders"], (oldData: Order[] | undefined) => {
+            if (!oldData) return [response.order];
+            const newData = oldData.map(order => 
+                order.id === response.order.id ? response.order : order
+            );
+            return newData;
+        });
+
+        // Force a refetch
+        await queryClient.invalidateQueries({ 
+            queryKey: ["/api/orders"],
+            refetchType: 'active'
+        });
+
+        setEditingOrder(null);
+
+        if (response.hasMovedToClosed) {
+            // ... rest of the code
+        }
+    } catch (error) {
+        console.error('Failed to update orders:', error);
+        toast({
+            title: "Error",
+            description: "Failed to refresh the order list. Please refresh the page.",
+            variant: "destructive",
+        });
+    }
+};
+

@@ -1,0 +1,78 @@
+export async function analyzeQuotations(quotations: Array<{...}>): Promise<string> {
+  // Log the exact data being analyzed
+  console.log('Raw quotation data for analysis:', quotations.map(q => ({
+    date: q.quotationDate,
+    status: q.status
+  })));
+
+  // Calculate exact counts
+  const openQuotations = quotations.filter(q => q.status === "Open").length;
+  const confirmedQuotations = quotations.filter(q => q.status === "Confirmed").length;
+  const declinedQuotations = quotations.filter(q => q.status === "Decline").length;
+  const totalQuotations = quotations.length;
+  const totalExcludingDeclined = totalQuotations - declinedQuotations;
+  const conversionRate = totalExcludingDeclined > 0
+    ? (confirmedQuotations / totalExcludingDeclined) * 100
+    : 0;
+
+  // Log the calculated statistics
+  console.log('Calculated statistics:', {
+    openQuotations,
+    confirmedQuotations,
+    declinedQuotations,
+    totalQuotations,
+    totalExcludingDeclined,
+    conversionRate
+  });
+
+  const prompt = `You are a professional Marine Insurance analyst. Analyze the following quotations data and provide detailed insights in clear, professional language without using any markdown formatting or special characters:
+
+IMPORTANT - Use EXACTLY these statistics in your analysis - do not modify or recalculate them:
+Total Quotations in Period: ${totalQuotations}
+Open Quotations: ${openQuotations}
+Confirmed Quotations: ${confirmedQuotations}
+Declined Quotations: ${declinedQuotations}
+Active Quotations (excluding declined): ${totalExcludingDeclined}
+Conversion Rate: ${conversionRate.toFixed(2)}%
+
+Quotations Data:
+${quotations.map(q => `
+- Broker: ${q.brokerName}
+- Insured: ${q.insuredName}
+- Product: ${q.marineProductType}
+- Premium: ${q.estimatedPremium} ${q.currency}
+- Date: ${new Date(q.quotationDate).toLocaleDateString('en-GB')}
+- Status: ${q.status}
+${q.declineReason ? `- Decline Reason: ${q.declineReason}` : ''}`).join('\n')}
+
+Your analysis MUST start with these exact counts:
+1. Quotation Counts and Conversion Rate:
+- Total Open Quotations: ${openQuotations}
+- Total Confirmed Quotations: ${confirmedQuotations}
+- Total Declined Quotations: ${declinedQuotations}
+- Total Quotations in Period: ${totalQuotations}
+- Active Quotations (excluding declined): ${totalExcludingDeclined}
+- Conversion Rate: ${conversionRate.toFixed(2)}%
+
+Then continue with:
+2. Average premium values by status with currency breakdowns
+3. Clear trends in marine product types with percentages
+4. Key brokers performance analysis
+5. Actionable recommendations for improving conversion rates
+
+Format the response as a JSON object with a single 'analysis' field containing the analysis text.`;
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o",
+    messages: [{ role: "user", content: prompt }],
+    response_format: { type: "json_object" },
+  });
+
+  const content = response.choices[0].message.content;
+  if (!content) {
+    throw new Error("Failed to generate analysis");
+  }
+
+  const result = JSON.parse(content);
+  return result.analysis;
+}
