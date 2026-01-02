@@ -127,6 +127,17 @@ export function registerRoutes(app: Express): Server {
           return;
         }
 
+        // Use form-provided businessType and orderDate if available, otherwise fall back to extracted
+        const formBusinessType = typeof req.body?.businessType === "string" && req.body.businessType.trim()
+          ? req.body.businessType.trim()
+          : null;
+        const formOrderDate = typeof req.body?.orderDate === "string" && req.body.orderDate.trim()
+          ? req.body.orderDate.trim()
+          : null;
+
+        const businessType = formBusinessType ?? extracted.businessType;
+        const orderDate = formOrderDate ?? extracted.orderDateISO;
+
         let notes = mergeNotes(extracted.notes ?? "", req.body?.notes as string | undefined);
         if (
           (extracted.marineProductType === "Pleasure Boats" ||
@@ -141,10 +152,10 @@ export function registerRoutes(app: Express): Server {
           brokerName,
           insuredName: extracted.insuredName,
           marineProductType: extracted.marineProductType,
-          businessType: extracted.businessType,
+          businessType,
           premium: extracted.premium.toString(),
           currency: extracted.currency,
-          orderDate: extracted.orderDateISO,
+          orderDate,
           statuses: ["Firm Order Received", "KYC Pending"],
           notes,
           requiresPreConditionSurvey: extracted.requiresPreConditionSurvey,

@@ -17,17 +17,33 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { UploadCloud, FileText } from "lucide-react";
+import { UploadCloud, FileText, CalendarIcon } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
 const uploadSchema = z.object({
   brokerName: z.string().optional().transform((value) => value?.trim() || ""),
+  businessType: z.enum(["New Business", "Renewal"]),
+  orderDate: z.date({ required_error: "Please select a date" }),
   notes: z.string().optional().transform((value) => value?.trim() || ""),
   manualText: z.string().optional().transform((value) => value?.trim() || ""),
   quotationFile: z
@@ -69,6 +85,8 @@ export function UploadOrderDialog({ open, onOpenChange, onSuccess }: UploadOrder
     resolver: zodResolver(uploadSchema),
     defaultValues: {
       brokerName: "",
+      businessType: "New Business",
+      orderDate: new Date(),
       notes: "",
       manualText: "",
       quotationFile: undefined,
@@ -89,6 +107,11 @@ export function UploadOrderDialog({ open, onOpenChange, onSuccess }: UploadOrder
       if (values.brokerName) {
         formData.append("brokerName", values.brokerName);
       }
+
+      // Add business type and order date
+      formData.append("businessType", values.businessType);
+      formData.append("orderDate", values.orderDate.toISOString());
+
       if (values.notes) {
         formData.append("notes", values.notes);
       }
@@ -168,6 +191,70 @@ export function UploadOrderDialog({ open, onOpenChange, onSuccess }: UploadOrder
                 </FormItem>
               )}
             />
+
+            {/* Business Type and Date Row */}
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="businessType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Type of Business</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="New Business">New Business</SelectItem>
+                        <SelectItem value="Renewal">Renewal</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="orderDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Order Date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}
