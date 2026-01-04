@@ -168,12 +168,16 @@ export default function ClosedPolicies() {
   };
 
   const filteredOrders = closedOrders?.filter((order) => {
-    // Text search
+    // Smart search - searches across multiple fields including notes
     const searchLower = searchText.toLowerCase();
     const matchesSearch =
       !searchText ||
       order.brokerName.toLowerCase().includes(searchLower) ||
-      order.insuredName.toLowerCase().includes(searchLower);
+      order.insuredName.toLowerCase().includes(searchLower) ||
+      (order.notes?.toLowerCase() ?? "").includes(searchLower) ||
+      ((order as any).marineProductType?.toLowerCase() ?? "").includes(searchLower) ||
+      ((order as any).businessType?.toLowerCase() ?? "").includes(searchLower) ||
+      (order.currency?.toLowerCase() ?? "").includes(searchLower);
 
     // Date range
     const orderDate = new Date(order.orderDate);

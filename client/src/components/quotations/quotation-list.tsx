@@ -179,12 +179,16 @@ export default function QuotationList() {
 
   const filteredQuotations = quotations
     ?.filter((quotation) => {
-      // Text search
+      // Smart search - searches across multiple fields including notes
       const searchLower = searchText.toLowerCase();
       const matchesSearch =
         !searchText ||
         quotation.brokerName.toLowerCase().includes(searchLower) ||
-        quotation.insuredName.toLowerCase().includes(searchLower);
+        quotation.insuredName.toLowerCase().includes(searchLower) ||
+        (quotation.notes?.toLowerCase() ?? "").includes(searchLower) ||
+        (quotation.marineProductType?.toLowerCase() ?? "").includes(searchLower) ||
+        (quotation.currency?.toLowerCase() ?? "").includes(searchLower) ||
+        (quotation.status?.toLowerCase() ?? "").includes(searchLower);
 
       // Date range
       const quotationDate = new Date(quotation.quotationDate);

@@ -170,12 +170,16 @@ export default function OrderList() {
   const filteredOrders = useMemo(() => {
     if (!orders) return [];
     return orders.filter((order) => {
-    // Text search - handle potential undefined/null values
+    // Smart search - searches across multiple fields including notes
     const searchLower = searchText.toLowerCase();
     const matchesSearch =
       !searchText ||
       (order?.brokerName?.toLowerCase() ?? "").includes(searchLower) ||
-      (order?.insuredName?.toLowerCase() ?? "").includes(searchLower);
+      (order?.insuredName?.toLowerCase() ?? "").includes(searchLower) ||
+      (order?.notes?.toLowerCase() ?? "").includes(searchLower) ||
+      (order?.marineProductType?.toLowerCase() ?? "").includes(searchLower) ||
+      (order?.businessType?.toLowerCase() ?? "").includes(searchLower) ||
+      (order?.currency?.toLowerCase() ?? "").includes(searchLower);
 
     // Date range
     const orderDate = new Date(order.orderDate);
